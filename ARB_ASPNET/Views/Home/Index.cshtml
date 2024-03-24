@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <ul>
+        <li>Website</li>
+        <li>
+            <a href="~/Home/Index">Home</a>
+        </li>
+        <li>
+            <a href="~/Home/AboutUs">About us</a>
+        </li>
+    </ul>
+    <div>
+       @ViewBag.title <span>@ViewBag.amount</span>
+        <p>@TempData["subTitle"]</p>
+    </div>
+</body>
+</html>

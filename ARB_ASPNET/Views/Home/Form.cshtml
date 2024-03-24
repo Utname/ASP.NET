@@ -1,0 +1,87 @@
+﻿
+@model ARB_ASPNET.Models.Customer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+</head>
+<body>
+    
+    <div>
+        <div>
+            <form action="~/Home/Form" method="post">
+                <p>
+                    <label>Fullname</label>
+                    <input name="Fullname" value="@Model.Fullname" />
+                </p>
+                <p>
+                    <label>BirthDay</label>
+                    <input name="BirthDay" type="date" value="@string.Format("{0:yyyy-MM-dd}",@Model.BirthDay)" />
+                </p>
+                <p>
+                    <label>Address</label>
+                    <input name="Address" value="@Model.Address" />
+                </p>
+                <p>
+                    <label>Gender</label>
+                    <select name="Gender">
+                        <option value="Nam" @(Model.Gender == "Nam" ? "selected" : "")>Nam</option>
+                        <option value="Nu" @(Model.Gender == "Nu" ? "selected" : "")>Nữ</option>
+                        <option value="Khac" @(Model.Gender == "Khac" ? "selected" : "")>Khác</option>
+
+                    </select>
+
+                    <input type="radio" name="Gender" value="Nam"  @(Model.Gender == "Nam" ? "checked" : "") /> Nam
+                    <input type="radio" name="Gender" value="Nu"   @(Model.Gender == "Nu" ? "checked" : "") /> Nu
+                    <input type="radio" name="Gender" value="Khac"  @(Model.Gender == "Khac" ? "checked" : "")  /> Khac
+
+
+                </p>
+                <p>
+                    <label>CCDD</label>
+                    <input name="CCDD" value="@Model.CCDD" />
+                </p>
+
+                <p>
+                    <label>PhoneNumber</label>
+                    <input name="PhoneNumber" value="@Model.PhoneNumber" />
+                </p>
+                <p>
+                    <label>Email</label>
+                    <input name="Email" value="@Model.Email" />
+                </p>
+                <p>
+                    <label>Facebook</label>
+                    <input name="Facebook" value="@Model.Facebook" />
+                </p>
+                <p>
+                    <button>Send</button>
+                </p>
+            </form>
+        </div>
+        @if(@Model != null)
+            {
+                <ul>
+
+                    <li>Fullname:@Model.Fullname</li>
+                    <li>BirthDay:@Model.BirthDay</li>
+                    <li>Address:@Model.Address</li>
+                    <li>Gender:@Model.Gender</li>
+                    <li>CCDD:@Model.CCDD</li>
+                    <li>PhoneNumber:@Model.PhoneNumber</li>
+                    <li>Email:@Model.Email</li>
+                    <li>Facebook:@Model.Facebook</li>
+
+                </ul>
+            }
+
+    </div>
+</body>
+</html>
