@@ -16,5 +16,7 @@ namespace ARB_ASPNET.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Facebook { get; set; }
+        public bool isUniversity { get; set; }
+        public string[] Certificate  { get; set; }    
     }
 }

@@ -38,10 +38,21 @@
 
                     </select>
 
-                    <input type="radio" name="Gender" value="Nam"  @(Model.Gender == "Nam" ? "checked" : "") /> Nam
-                    <input type="radio" name="Gender" value="Nu"   @(Model.Gender == "Nu" ? "checked" : "") /> Nu
-                    <input type="radio" name="Gender" value="Khac"  @(Model.Gender == "Khac" ? "checked" : "")  /> Khac
+                    <input type="radio" name="Gender" value="Nam" @(Model.Gender == "Nam" ? "checked" : "") /> Nam
+                    <input type="radio" name="Gender" value="Nu" @(Model.Gender == "Nu" ? "checked" : "") /> Nu
+                    <input type="radio" name="Gender" value="Khac" @(Model.Gender == "Khac" ? "checked" : "") /> Khac
 
+
+                </p>
+                <p>
+                    <label>Is University</label>
+                    <input type="checkbox" name="isUniversity" value="true" @(Model.isUniversity == true ? "checked" : "") />
+
+                </p>
+                <p>
+                    <label>Certificate</label>
+                    <input type="checkbox" value="English" name="Certificate"  @((Model.Certificate??new string[] {}).Count(x=>x == "English") > 0 ? "checked" : "")/>English
+                    <input type="checkbox" value="VietNames" name="Certificate" @((Model.Certificate??new string[] {}).Count(x=>x == "VietNames") > 0 ? "checked" : "") />VietNames
 
                 </p>
                 <p>
@@ -61,26 +72,38 @@
                     <label>Facebook</label>
                     <input name="Facebook" value="@Model.Facebook" />
                 </p>
+
                 <p>
                     <button>Send</button>
                 </p>
             </form>
         </div>
-        @if(@Model != null)
+        @{
+            int i = 0;
+        }
+        <table>
+            <thead>
+                <tr>_No</tr>
+                <tr>Fullname</tr>
+                <tr>Birthday</tr>
+                <tr>Address</tr>
+            </thead>
+            <tbody>
+              @foreach(var item in ARB_ASPNET.Models.ListCustomer.customers)
             {
-                <ul>
+                <tr>
+                    <td>@i++</td>
+                    <td>@item.Fullname</td>
+                    <td>@item.BirthDay</td>
+                    <td>@item.Address</td>
 
-                    <li>Fullname:@Model.Fullname</li>
-                    <li>BirthDay:@Model.BirthDay</li>
-                    <li>Address:@Model.Address</li>
-                    <li>Gender:@Model.Gender</li>
-                    <li>CCDD:@Model.CCDD</li>
-                    <li>PhoneNumber:@Model.PhoneNumber</li>
-                    <li>Email:@Model.Email</li>
-                    <li>Facebook:@Model.Facebook</li>
 
-                </ul>
+
+
+                </tr>
             }
+            </tbody>
+        </table>
 
     </div>
 </body>

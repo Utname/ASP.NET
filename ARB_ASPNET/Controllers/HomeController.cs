@@ -48,7 +48,7 @@ namespace ARB_ASPNET.Controllers
         [HttpPost]
         public ActionResult Form(Customer model)
         {
-           
+            ListCustomer.customers.Add(model);
             return View(model);
         }
         

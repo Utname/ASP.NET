@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\ListCustomer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
