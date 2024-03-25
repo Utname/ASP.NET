@@ -81,28 +81,22 @@
         @{
             int i = 0;
         }
-        <table>
-            <thead>
-                <tr>_No</tr>
-                <tr>Fullname</tr>
-                <tr>Birthday</tr>
-                <tr>Address</tr>
-            </thead>
-            <tbody>
-              @foreach(var item in ARB_ASPNET.Models.ListCustomer.customers)
+    <table style="table-layout:fixed">
+        <tr>
+            <th style="width: 5px; border: 1px solid">_No</th>
+            <th style="width: 150px; border: 1px solid">Fullname</th>
+            <th style="width:150px;border:1px solid">Birthday</th>
+            <th style="width: 250px; border: 1px solid">Address</th>
+
+        </tr>
+            @foreach (var item in ARB_ASPNET.Models.ListCustomer.customers)
             {
-                <tr>
-                    <td>@i++</td>
-                    <td>@item.Fullname</td>
-                    <td>@item.BirthDay</td>
-                    <td>@item.Address</td>
+            <th style="border:1px solid">@(i++)</th>
+            <th style="border:1px solid">@item.Fullname</th>
+            <th style="border:1px solid">@item.BirthDay</th>
+            <th style="border:1px solid">@item.Address</th>
 
-
-
-
-                </tr>
-            }
-            </tbody>
+        }
         </table>
 
     </div>
