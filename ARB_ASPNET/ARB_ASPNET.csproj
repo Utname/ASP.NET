@@ -116,6 +116,7 @@
     <Content Include="Views\Home\FormNhan.cshtml" />
     <Content Include="Views\Home\FormNhanObject.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

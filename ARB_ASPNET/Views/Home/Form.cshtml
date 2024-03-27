@@ -2,85 +2,79 @@
 @model ARB_ASPNET.Models.Customer
 
 @{
-    Layout = null;
+    ViewBag.Title = "Xin chao cac ban";
+  
+    ViewBag.Model = Model;
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Form</title>
-</head>
-<body>
-    
+<div>
     <div>
-        <div>
-            <form action="~/Home/Form" method="post">
-                <p>
-                    <label>Fullname</label>
-                    <input name="Fullname" value="@Model.Fullname" />
-                </p>
-                <p>
-                    <label>BirthDay</label>
-                    <input name="BirthDay" type="date" value="@string.Format("{0:yyyy-MM-dd}",@Model.BirthDay)" />
-                </p>
-                <p>
-                    <label>Address</label>
-                    <input name="Address" value="@Model.Address" />
-                </p>
-                <p>
-                    <label>Gender</label>
-                    <select name="Gender">
-                        <option value="Nam" @(Model.Gender == "Nam" ? "selected" : "")>Nam</option>
-                        <option value="Nu" @(Model.Gender == "Nu" ? "selected" : "")>Nữ</option>
-                        <option value="Khac" @(Model.Gender == "Khac" ? "selected" : "")>Khác</option>
+        <form action="~/Home/Form" method="post">
+            <p>
+                <label>Fullname</label>
+                <input name="Fullname" value="@Model.Fullname" />
+            </p>
+            <p>
+                <label>BirthDay</label>
+                <input name="BirthDay" type="date" value="@string.Format("{0:yyyy-MM-dd}",@Model.BirthDay)" />
+            </p>
+            <p>
+                <label>Address</label>
+                <input name="Address" value="@Model.Address" />
+            </p>
+            <p>
+                <label>Gender</label>
+                <select name="Gender">
+                    <option value="Nam" @(Model.Gender == "Nam" ? "selected" : "")>Nam</option>
+                    <option value="Nu" @(Model.Gender == "Nu" ? "selected" : "")>Nữ</option>
+                    <option value="Khac" @(Model.Gender == "Khac" ? "selected" : "")>Khác</option>
 
-                    </select>
+                </select>
 
-                    <input type="radio" name="Gender" value="Nam" @(Model.Gender == "Nam" ? "checked" : "") /> Nam
-                    <input type="radio" name="Gender" value="Nu" @(Model.Gender == "Nu" ? "checked" : "") /> Nu
-                    <input type="radio" name="Gender" value="Khac" @(Model.Gender == "Khac" ? "checked" : "") /> Khac
+                <input type="radio" name="Gender" value="Nam" @(Model.Gender == "Nam" ? "checked" : "") /> Nam
+                <input type="radio" name="Gender" value="Nu" @(Model.Gender == "Nu" ? "checked" : "") /> Nu
+                <input type="radio" name="Gender" value="Khac" @(Model.Gender == "Khac" ? "checked" : "") /> Khac
 
 
-                </p>
-                <p>
-                    <label>Is University</label>
-                    <input type="checkbox" name="isUniversity" value="true" @(Model.isUniversity == true ? "checked" : "") />
+            </p>
+            <p>
+                <label>Is University</label>
+                <input type="checkbox" name="isUniversity" value="true" @(Model.isUniversity == true ? "checked" : "") />
 
-                </p>
-                <p>
-                    <label>Certificate</label>
-                    <input type="checkbox" value="English" name="Certificate"  @((Model.Certificate??new string[] {}).Count(x=>x == "English") > 0 ? "checked" : "")/>English
-                    <input type="checkbox" value="VietNames" name="Certificate" @((Model.Certificate??new string[] {}).Count(x=>x == "VietNames") > 0 ? "checked" : "") />VietNames
+            </p>
+            <p>
+                <label>Certificate</label>
+                <input type="checkbox" value="English" name="Certificate" @((Model.Certificate ?? new string[] { }).Count(x => x == "English") > 0 ? "checked" : "") />English
+                <input type="checkbox" value="VietNames" name="Certificate" @((Model.Certificate ?? new string[] { }).Count(x => x == "VietNames") > 0 ? "checked" : "") />VietNames
 
-                </p>
-                <p>
-                    <label>CCDD</label>
-                    <input name="CCDD" value="@Model.CCDD" />
-                </p>
+            </p>
+            <p>
+                <label>CCDD</label>
+                <input name="CCDD" value="@Model.CCDD" />
+            </p>
 
-                <p>
-                    <label>PhoneNumber</label>
-                    <input name="PhoneNumber" value="@Model.PhoneNumber" />
-                </p>
-                <p>
-                    <label>Email</label>
-                    <input name="Email" value="@Model.Email" />
-                </p>
-                <p>
-                    <label>Facebook</label>
-                    <input name="Facebook" value="@Model.Facebook" />
-                </p>
+            <p>
+                <label>PhoneNumber</label>
+                <input name="PhoneNumber" value="@Model.PhoneNumber" />
+            </p>
+            <p>
+                <label>Email</label>
+                <input name="Email" value="@Model.Email" />
+            </p>
+            <p>
+                <label>Facebook</label>
+                <input name="Facebook" value="@Model.Facebook" />
+            </p>
 
-                <p>
-                    <button>Send</button>
-                </p>
-            </form>
-        </div>
-        @{
-            int i = 0;
-        }
+            <p>
+                <button>Send</button>
+            </p>
+        </form>
+    </div>
+    @{
+        int i = 0;
+    }
     <table style="table-layout:fixed">
         <tr>
             <th style="width: 5px; border: 1px solid">_No</th>
@@ -89,16 +83,21 @@
             <th style="width: 250px; border: 1px solid">Address</th>
 
         </tr>
-            @foreach (var item in ARB_ASPNET.Models.ListCustomer.customers)
-            {
+        @foreach (var item in ARB_ASPNET.Models.ListCustomer.customers)
+        {
             <th style="border:1px solid">@(i++)</th>
             <th style="border:1px solid">@item.Fullname</th>
             <th style="border:1px solid">@item.BirthDay</th>
             <th style="border:1px solid">@item.Address</th>
 
         }
-        </table>
+    </table>
 
-    </div>
-</body>
-</html>
+
+
+
+</div>
+
+@section Doan2{
+        <p style="color:red;padding:300px;background-color:green">Noi dung so 2</p>
+    }

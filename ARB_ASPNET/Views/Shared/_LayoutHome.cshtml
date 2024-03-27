@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div>Header my home @ViewBag.Model.BirthDay</div>
+    <div>
+        @RenderBody()
+    </div>
+    <div>
+        @RenderSection("Doan2")
+    </div>
+    <div>Footer my home</div>
+</body>
+</html>

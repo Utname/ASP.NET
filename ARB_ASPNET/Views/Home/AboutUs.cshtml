@@ -1,28 +1,23 @@
 ﻿
 @model List<ARB_ASPNET.Models.Data>
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>aboutUs</title>
-    <link href="~/Content/Style.css" rel="stylesheet" />
-</head>
-<body>
-    <ul>
-        <li>Website</li>
-        <li>
-            <a href="~/Home/Index">Home</a>
-        </li>
-        <li>
-            <a href="~/Home/AboutUs">About us</a>
-        </li>
-    </ul>
+@section Doan3{
+
     <div>
-        @foreach (var item in Model)
-        {
-            @item.name <strong>@item.description</strong>
-        }
+        <ul>
+            <li>Website</li>
+            <li>
+                <a href="~/Home/Index">Home</a>
+            </li>
+            <li>
+                <a href="~/Home/AboutUs">About us</a>
+            </li>
+        </ul>
+        <div>
+            @foreach (var item in Model)
+            {
+                @item.name <strong>@item.description</strong>
+            }
+        </div>
     </div>
-</body>
-</html>
+}
