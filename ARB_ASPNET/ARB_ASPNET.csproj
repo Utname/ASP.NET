@@ -88,6 +88,76 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\animate.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\icofont.css" />
+    <Content Include="Content\css\magnific-popup.css" />
+    <Content Include="Content\css\nice-select.css" />
+    <Content Include="Content\css\normalize.css" />
+    <Content Include="Content\css\owl-carousel.css" />
+    <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\css\slicknav.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\icofont.svg" />
+    <Content Include="Content\img\about-img.jpg" />
+    <Content Include="Content\img\author1.jpg" />
+    <Content Include="Content\img\author2.jpg" />
+    <Content Include="Content\img\author3.jpg" />
+    <Content Include="Content\img\blockqoute-bg.jpg" />
+    <Content Include="Content\img\blog-sidebar1.jpg" />
+    <Content Include="Content\img\blog-sidebar2.jpg" />
+    <Content Include="Content\img\blog-sidebar3.jpg" />
+    <Content Include="Content\img\blog1.jpg" />
+    <Content Include="Content\img\blog2.jpg" />
+    <Content Include="Content\img\blog3.jpg" />
+    <Content Include="Content\img\bread-bg.jpg" />
+    <Content Include="Content\img\call-bg.jpg" />
+    <Content Include="Content\img\client-bg.jpg" />
+    <Content Include="Content\img\client1.png" />
+    <Content Include="Content\img\client2.png" />
+    <Content Include="Content\img\client3.png" />
+    <Content Include="Content\img\client4.png" />
+    <Content Include="Content\img\client5.png" />
+    <Content Include="Content\img\contact-img.png" />
+    <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\fun-bg.jpg" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\map-marker.png" />
+    <Content Include="Content\img\mission-img.jpg" />
+    <Content Include="Content\img\pf1.jpg" />
+    <Content Include="Content\img\pf2.jpg" />
+    <Content Include="Content\img\pf3.jpg" />
+    <Content Include="Content\img\pf4.jpg" />
+    <Content Include="Content\img\section-img.png" />
+    <Content Include="Content\img\signup-bg.jpg" />
+    <Content Include="Content\img\slider.jpg" />
+    <Content Include="Content\img\slider2.jpg" />
+    <Content Include="Content\img\slider3.jpg" />
+    <Content Include="Content\img\testi-bg.jpg" />
+    <Content Include="Content\img\video-bg.jpg" />
+    <Content Include="Content\js\bootstrap-datepicker.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\colors.js" />
+    <Content Include="Content\js\easing.js" />
+    <Content Include="Content\js\gmaps.min.js" />
+    <Content Include="Content\js\jquery-migrate-3.0.0.js" />
+    <Content Include="Content\js\jquery-ui.min.js" />
+    <Content Include="Content\js\jquery.counterup.min.js" />
+    <Content Include="Content\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\jquery.nav.js" />
+    <Content Include="Content\js\jquery.scrollUp.min.js" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\map-active.js" />
+    <Content Include="Content\js\niceselect.js" />
+    <Content Include="Content\js\owl-carousel.js" />
+    <Content Include="Content\js\popper.min.js" />
+    <Content Include="Content\js\slicknav.min.js" />
+    <Content Include="Content\js\steller.js" />
+    <Content Include="Content\js\tilt.jquery.min.js" />
+    <Content Include="Content\js\wow.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Style.css" />
     <Content Include="Global.asax" />
@@ -95,7 +165,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -107,16 +176,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\icofont.eot" />
+    <Content Include="Content\fonts\icofont.ttf" />
+    <Content Include="Content\fonts\icofont.woff" />
+    <Content Include="Content\fonts\icofont.woff2" />
+    <Content Include="Content\mail\mail.php" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\AboutUs.cshtml" />
-    <Content Include="Views\Home\Form.cshtml" />
-    <Content Include="Views\Home\FormNhan.cshtml" />
-    <Content Include="Views\Home\FormNhanObject.cshtml" />
-    <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
