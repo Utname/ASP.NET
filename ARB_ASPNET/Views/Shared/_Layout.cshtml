@@ -10,37 +10,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>Mediplus - Free Medical and Doctor Directory HTML Template.</title>
+    <title>@ViewBag.Title</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="img/favicon.png">
-
+    <link rel="icon" href="~/Content/img/favicon.png">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Nice Select CSS -->
-    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="~/Content/css/nice-select.css">
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
     <!-- icofont CSS -->
-    <link rel="stylesheet" href="css/icofont.css">
+    <link rel="stylesheet" href="~/Content/css/icofont.css">
     <!-- Slicknav -->
-    <link rel="stylesheet" href="css/slicknav.min.css">
+    <link rel="stylesheet" href="~/Content/css/slicknav.min.css">
     <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="css/owl-carousel.css">
+    <link rel="stylesheet" href="~/Content/css/owl-carousel.css">
     <!-- Datepicker CSS -->
-    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" href="~/Content/css/datepicker.css">
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="~/Content/css/animate.min.css">
     <!-- Magnific Popup CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
 
     <!-- Medipro CSS -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
 
 </head>
 <body>
@@ -85,7 +85,7 @@
                     <div class="col-lg-6 col-md-5 col-12">
                         <!-- Contact -->
                         <ul class="top-link">
-                            <li><a href="#">About</a></li>
+                            <li><a href="~/Home/About">About</a></li>
                             <li><a href="#">Doctors</a></li>
                             <li><a href="#">Contact</a></li>
                             <li><a href="#">FAQ</a></li>
@@ -112,7 +112,7 @@
                         <div class="col-lg-3 col-md-3 col-12">
                             <!-- Start Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src="img/logo.png" alt="#"></a>
+                                <a href="index.html"><img src="~/Content/img/logo.png" alt="#"></a>
                             </div>
                             <!-- End Logo -->
                             <!-- Mobile Nav -->
@@ -125,12 +125,12 @@
                                 <nav class="navigation">
                                     <ul class="nav menu">
                                         <li class="active">
-                                            <a href="#">Home <i class="icofont-rounded-down"></i></a>
+                                            <a href="/">Home <i class="icofont-rounded-down"></i></a>
                                             <ul class="dropdown">
                                                 <li><a href="index.html">Home Page 1</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">Doctos </a></li>
+                                        <li><a href="~/Home/About">Doctos </a></li>
                                         <li><a href="#">Services </a></li>
                                         <li>
                                             <a href="#">Pages <i class="icofont-rounded-down"></i></a>
@@ -161,6 +161,7 @@
         </div>
         <!--/ End Header Inner -->
     </header>
+    <div>@RenderBody()</div>
     <footer id="footer" class="footer ">
         <!-- Footer Top -->
         <div class="footer-top">
@@ -248,44 +249,44 @@
     </footer>
     <!--/ End Footer Area -->
     <!-- jquery Min JS -->
-    <script src="js/jquery.min.js"></script>
+    <script src="~/Content/js/jquery.min.js"></script>
     <!-- jquery Migrate JS -->
-    <script src="js/jquery-migrate-3.0.0.js"></script>
+    <script src="~/Content/js/jquery-migrate-3.0.0.js"></script>
     <!-- jquery Ui JS -->
-    <script src="js/jquery-ui.min.js"></script>
+    <script src="~/Content/js/jquery-ui.min.js"></script>
     <!-- Easing JS -->
-    <script src="js/easing.js"></script>
+    <script src="~/Content/js/easing.js"></script>
     <!-- Color JS -->
-    <script src="js/colors.js"></script>
+    <script src="~/Content/js/colors.js"></script>
     <!-- Popper JS -->
-    <script src="js/popper.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
     <!-- Bootstrap Datepicker JS -->
-    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/js/bootstrap-datepicker.js"></script>
     <!-- Jquery Nav JS -->
-    <script src="js/jquery.nav.js"></script>
+    <script src="~/Content/js/jquery.nav.js"></script>
     <!-- Slicknav JS -->
-    <script src="js/slicknav.min.js"></script>
+    <script src="~/Content/js/slicknav.min.js"></script>
     <!-- ScrollUp JS -->
-    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="~/Content/js/jquery.scrollUp.min.js"></script>
     <!-- Niceselect JS -->
-    <script src="js/niceselect.js"></script>
+    <script src="~/Content/js/niceselect.js"></script>
     <!-- Tilt Jquery JS -->
-    <script src="js/tilt.jquery.min.js"></script>
+    <script src="~/Content/js/tilt.jquery.min.js"></script>
     <!-- Owl Carousel JS -->
-    <script src="js/owl-carousel.js"></script>
+    <script src="~/Content/js/owl-carousel.js"></script>
     <!-- counterup JS -->
-    <script src="js/jquery.counterup.min.js"></script>
+    <script src="~/Content/js/jquery.counterup.min.js"></script>
     <!-- Steller JS -->
-    <script src="js/steller.js"></script>
+    <script src="~/Content/js/steller.js"></script>
     <!-- Wow JS -->
-    <script src="js/wow.min.js"></script>
+    <script src="~/Content/js/wow.min.js"></script>
     <!-- Magnific Popup JS -->
-    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
     <!-- Counter Up CDN JS -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="~/Content/js/main.js"></script>
 </body>
 </html>

@@ -16,6 +16,11 @@ namespace ARB_ASPNET.Controllers
         {
             return View();
         }
-        
+        public ActionResult About()
+        {
+            return View();
+        }
+
+
     }
 }
