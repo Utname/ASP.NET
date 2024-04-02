@@ -70,3 +70,10 @@ C:\ASP.NET\ARB_ASPNET\obj\Debug\ARB_ASPNET.csproj.CoreCompileInputs.cache
 C:\ASP.NET\ARB_ASPNET\obj\Debug\ARB_ASPNET.csproj.CopyComplete
 C:\ASP.NET\ARB_ASPNET\obj\Debug\ARB_ASPNET.dll
 C:\ASP.NET\ARB_ASPNET\obj\Debug\ARB_ASPNET.pdb
+C:\ASP.NET\ARB_ASPNET\bin\Data.dll
+C:\ASP.NET\ARB_ASPNET\bin\EntityFramework.dll
+C:\ASP.NET\ARB_ASPNET\bin\EntityFramework.SqlServer.dll
+C:\ASP.NET\ARB_ASPNET\bin\Data.pdb
+C:\ASP.NET\ARB_ASPNET\bin\Data.dll.config
+C:\ASP.NET\ARB_ASPNET\bin\EntityFramework.xml
+C:\ASP.NET\ARB_ASPNET\bin\EntityFramework.SqlServer.xml
