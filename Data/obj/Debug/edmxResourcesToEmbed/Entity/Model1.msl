@@ -77,5 +77,16 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="spSearchCustotmers" FunctionName="SuperMartketsModel.Store.spSearchCustotmers" />
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="SuperMartketsModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

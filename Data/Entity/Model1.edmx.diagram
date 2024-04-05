@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="SuperMartketsModel.TypeAddress" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="SuperMartketsModel.FK_Address_TypeAddress" ManuallyRouted="false" />
         <AssociationConnector Association="SuperMartketsModel.FK_Customers_Address" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SuperMartketsModel.Account" Width="1.5" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

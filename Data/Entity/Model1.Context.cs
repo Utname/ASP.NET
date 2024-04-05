@@ -31,6 +31,7 @@ namespace Data.Entity
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TypeAddress> TypeAddresses { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

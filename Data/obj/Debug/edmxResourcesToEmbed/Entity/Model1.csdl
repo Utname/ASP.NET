@@ -115,6 +115,7 @@
     <FunctionImport Name="spSearchCustotmers">
       <Parameter Name="Year" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="Accounts" EntityType="SuperMartketsModel.Account" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -132,4 +133,14 @@
     <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
     <Property Type="Int32" Name="idNameType" Nullable="true" />
   </ComplexType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

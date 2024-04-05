@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Account.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Address.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -86,6 +89,7 @@
     <Compile Include="Entity\TypeAddress.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="mapAccount.cs" />
     <Compile Include="mapCustomers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
