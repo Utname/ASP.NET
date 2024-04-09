@@ -35,6 +35,23 @@
           <Property Name="Year" Type="int" />
           <Property Name="Money" Type="float" />
           <Property Name="Active" Type="bit" />
+          <Property Name="Avatar" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCustomer" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="date" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="InfoProduct" Type="nvarchar" MaxLength="500" />
+          <Property Name="TotalProductCost" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="FeeShip" Type="float" />
+          <Property Name="TotalPay" Type="float" />
+          <Property Name="Paid" Type="float" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -77,6 +94,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Customers1">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -108,6 +139,11 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spGetAllProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="yearBD" Type="int" Mode="In" />
+          <Parameter Name="page" Type="int" Mode="In" />
+          <Parameter Name="size" Type="int" Mode="In" />
+        </Function>
         <Function Name="spSearchAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
@@ -118,6 +154,7 @@
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeAddress" EntityType="Self.TypeAddress" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Address_TypeAddress" Association="Self.FK_Address_TypeAddress">
@@ -127,6 +164,10 @@
           <AssociationSet Name="FK_Customers_Address" Association="Self.FK_Customers_Address">
             <End Role="Address" EntitySet="Address" />
             <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customers1" Association="Self.FK_Order_Customers1">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -156,6 +197,8 @@
           <Property Name="Money" Type="Double" />
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="Address" Relationship="Self.FK_Customers_Address" FromRole="Customers" ToRole="Address" />
+          <NavigationProperty Name="Orders" Relationship="SuperMartketsModel.FK_Order_Customers1" FromRole="Customer" ToRole="Order" />
+          <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -249,6 +292,16 @@
           <Parameter Name="Year" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="Accounts" EntityType="SuperMartketsModel.Account" />
+          <EntitySet Name="Orders" EntityType="SuperMartketsModel.Order" />
+          <AssociationSet Name="FK_Order_Customers1" Association="SuperMartketsModel.FK_Order_Customers1">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <FunctionImport Name="spGetAllProduct" ReturnType="Collection(SuperMartketsModel.spGetAllProduct_Result)">
+            <Parameter Name="yearBD" Mode="In" Type="Int32" />
+            <Parameter Name="page" Mode="In" Type="Int32" />
+            <Parameter Name="size" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -276,6 +329,48 @@
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCustomer" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="InfoProduct" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TotalProductCost" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="FeeShip" Type="Double" />
+          <Property Name="TotalPay" Type="Double" />
+          <Property Name="Paid" Type="Double" />
+          <NavigationProperty Name="Customer" Relationship="SuperMartketsModel.FK_Order_Customers1" FromRole="Order" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_Order_Customers1">
+          <End Type="SuperMartketsModel.Customer" Role="Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SuperMartketsModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="idCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="spGetAllProduct_Result">
+          <Property Type="Int64" Name="C_No" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Birthday" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="11" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="Status_del" Nullable="false" MaxLength="10" />
+          <Property Type="Double" Name="Money" Nullable="true" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -294,6 +389,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="SuperMartketsModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
@@ -369,6 +465,38 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SuperMartketsModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="TotalPay" ColumnName="TotalPay" />
+                <ScalarProperty Name="FeeShip" ColumnName="FeeShip" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TotalProductCost" ColumnName="TotalProductCost" />
+                <ScalarProperty Name="InfoProduct" ColumnName="InfoProduct" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetAllProduct" FunctionName="SuperMartketsModel.Store.spGetAllProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SuperMartketsModel.spGetAllProduct_Result">
+                <ScalarProperty Name="C_No" ColumnName="_No" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Status_del" ColumnName="Status_del" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

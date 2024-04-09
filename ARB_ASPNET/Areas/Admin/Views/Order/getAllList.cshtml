@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Data.Entity.Order>
+
+@{
+    ViewBag.Title = "List all order";
+    Layout = "~/Areas/Admin/Views/Shared/Layout-admin.cshtml";
+}
+@{
+    int i = 0;
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            List all order
+            <a href="~/Admin/Order/Insert" style="float:right">Create</a>
+        </h6>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="background:blue;color:white">
+                        <th>_No</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Customer.Name)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InfoProduct)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OrderDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalProductCost)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Discount)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FeeShip)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalPay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Paid)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th colspan="5" style="font-weight:bold;text-align:right" >Tổng</th>
+                      
+                        <th>
+                            @string.Format("{0:#,0.##}", Model.Sum(q=>q.TotalProductCost ??0))
+                          
+                        </th>
+                        <th>
+                            @string.Format("{0:#,0.##}", Model.Sum(q => q.Discount ?? 0))
+                          
+                        </th>
+                        <th>
+                            @string.Format("{0:#,0.##}", Model.Sum(q => q.FeeShip ?? 0))
+                        </th>
+                        <th>
+                            @string.Format("{0:#,0.##}", Model.Sum(q => q.TotalPay ?? 0))
+
+                        </th>
+                        <th>    
+                            @string.Format("{0:#,0.##}", Model.Sum(q => q.Paid ?? 0))
+
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(++i)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Customer.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InfoProduct)
+                            </td>
+                            <td>
+                                @string.Format("{0:yyyy-MM-dd}", item.OrderDate)
+                            </td>
+                            <td>
+                                @string.Format("{0:#,0.##}", item.TotalProductCost)
+                            </td>
+                            <td>
+                                @string.Format("{0:#,0.##}", item.Discount)
+
+                            </td>
+                            <td>
+                                @string.Format("{0:#,0.##}", item.FeeShip)
+                            </td>
+                            <td>
+                                @string.Format("{0:#,0.##}", item.TotalPay)
+                            </td>
+                            <td>
+                                @string.Format("{0:#,0.##}", item.Paid)
+                            </td>
+
+                            @*<td>
+                                @Html.ActionLink("Edit", "Edit", item) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>*@
+                        <td>
+                            <a href="~/Admin/Order/Update?id=@item.Id">Update</a>
+                            <a href="~/Admin/Order/Delete?id=@item.Id" style="color:red">Delete</a>
+
+                        </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="SuperMartketsModel.Customer">
         <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Avatar" ColumnName="Avatar" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Birthday" ColumnName="Birthday" />
@@ -88,5 +89,37 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="SuperMartketsModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="TotalPay" ColumnName="TotalPay" />
+          <ScalarProperty Name="FeeShip" ColumnName="FeeShip" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="TotalProductCost" ColumnName="TotalProductCost" />
+          <ScalarProperty Name="InfoProduct" ColumnName="InfoProduct" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllProduct" FunctionName="SuperMartketsModel.Store.spGetAllProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SuperMartketsModel.spGetAllProduct_Result">
+          <ScalarProperty Name="C_No" ColumnName="_No" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Status_del" ColumnName="Status_del" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

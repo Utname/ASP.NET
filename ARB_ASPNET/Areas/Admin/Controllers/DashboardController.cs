@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Data;
 
 namespace ARB_ASPNET.Areas.Admin.Controllers
 {
@@ -11,7 +12,7 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
         // GET: Admin/Dashboard
         public ActionResult Index()
         {
-            return View();
+            return View(new mapAccount().getListAll());
         }
     }
 }

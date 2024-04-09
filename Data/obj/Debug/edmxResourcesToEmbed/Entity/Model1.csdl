@@ -23,6 +23,8 @@
     <Property Name="Money" Type="Double" />
     <Property Name="Active" Type="Boolean" />
     <NavigationProperty Name="Address" Relationship="Self.FK_Customers_Address" FromRole="Customers" ToRole="Address" />
+    <NavigationProperty Name="Orders" Relationship="SuperMartketsModel.FK_Order_Customers1" FromRole="Customer" ToRole="Order" />
+    <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -116,6 +118,16 @@
       <Parameter Name="Year" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="Accounts" EntityType="SuperMartketsModel.Account" />
+    <EntitySet Name="Orders" EntityType="SuperMartketsModel.Order" />
+    <AssociationSet Name="FK_Order_Customers1" Association="SuperMartketsModel.FK_Order_Customers1">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <FunctionImport Name="spGetAllProduct" ReturnType="Collection(SuperMartketsModel.spGetAllProduct_Result)">
+      <Parameter Name="yearBD" Mode="In" Type="Int32" />
+      <Parameter Name="page" Mode="In" Type="Int32" />
+      <Parameter Name="size" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -143,4 +155,46 @@
     <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCustomer" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="InfoProduct" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TotalProductCost" Type="Double" />
+    <Property Name="Discount" Type="Double" />
+    <Property Name="FeeShip" Type="Double" />
+    <Property Name="TotalPay" Type="Double" />
+    <Property Name="Paid" Type="Double" />
+    <NavigationProperty Name="Customer" Relationship="SuperMartketsModel.FK_Order_Customers1" FromRole="Order" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_Order_Customers1">
+    <End Type="SuperMartketsModel.Customer" Role="Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="SuperMartketsModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="idCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spGetAllProduct_Result">
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Birthday" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="11" />
+    <Property Type="Int32" Name="Year" Nullable="true" />
+    <Property Type="String" Name="Status_del" Nullable="false" MaxLength="10" />
+    <Property Type="Double" Name="Money" Nullable="true" />
+    <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+  </ComplexType>
 </Schema>

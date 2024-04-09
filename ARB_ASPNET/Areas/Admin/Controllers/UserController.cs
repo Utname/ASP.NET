@@ -10,17 +10,17 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: Admin/User
+        mapAccount map = new mapAccount();
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(string name,string password) {
-
-            mapAccount map = new mapAccount();
+        public ActionResult Login(string name, string password)
+        {
             var user = map.Search(name, password);
-            if(user != null)
+            if (user != null)
             {
                 return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 //return RedirectToAction("/Admin/Dashboard/Index);
@@ -28,6 +28,24 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
             ViewBag.error = "Invalid account name or password";
             return View();
 
+        }
+
+        /// <summary>
+        /// Return view Account
+        /// </summary>
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Register Account
+        /// </summary>
+        [HttpPost]
+        public ActionResult Register(Account model)
+        {
+            if (map.Insert(model) == true) return RedirectToAction("Login");
+            else return View(model);
         }
     }
 }

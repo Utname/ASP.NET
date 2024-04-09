@@ -32,6 +32,7 @@ namespace Data.Entity
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TypeAddress> TypeAddresses { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -153,5 +154,24 @@ namespace Data.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spSearchCustotmers", yearParameter);
         }
+    
+        public virtual ObjectResult<spGetAllProduct_Result> spGetAllProduct(Nullable<int> yearBD, Nullable<int> page, Nullable<int> size)
+        {
+            var yearBDParameter = yearBD.HasValue ?
+                new ObjectParameter("yearBD", yearBD) :
+                new ObjectParameter("yearBD", typeof(int));
+    
+            var pageParameter = page.HasValue ?
+                new ObjectParameter("page", page) :
+                new ObjectParameter("page", typeof(int));
+    
+            var sizeParameter = size.HasValue ?
+                new ObjectParameter("size", size) :
+                new ObjectParameter("size", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllProduct_Result>("spGetAllProduct", yearBDParameter, pageParameter, sizeParameter);
+        }
+
+        public System.Data.Entity.DbSet<Data.Entity.spGetAllProduct_Result> spGetAllProduct_Result { get; set; }
     }
 }

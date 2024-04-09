@@ -74,6 +74,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entity\Order.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\spGetAllProduct_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\spSearchAddress_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -90,7 +96,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="mapAccount.cs" />
+    <Compile Include="mapAddress.cs" />
     <Compile Include="mapCustomers.cs" />
+    <Compile Include="mapOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
