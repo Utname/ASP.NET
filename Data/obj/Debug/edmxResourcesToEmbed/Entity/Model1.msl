@@ -121,5 +121,40 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="DonHangs">
+      <EntityTypeMapping TypeName="SuperMartketsModel.DonHang">
+        <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="TotalPay" ColumnName="TotalPay" />
+          <ScalarProperty Name="FeeShip" ColumnName="FeeShip" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="TotalProductCost" ColumnName="TotalProductCost" />
+          <ScalarProperty Name="InfoProduct" ColumnName="InfoProduct" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="idCustomer" ColumnName="idCustomer" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spGetAllDonHangNew" FunctionName="SuperMartketsModel.Store.spGetAllDonHangNew">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SuperMartketsModel.spGetAllDonHangNew_Result">
+          <ScalarProperty Name="C_No" ColumnName="_No" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="InfoProduct" ColumnName="InfoProduct" />
+          <ScalarProperty Name="TotalProductCost" ColumnName="TotalProductCost" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="FeeShip" ColumnName="FeeShip" />
+          <ScalarProperty Name="TotalPay" ColumnName="TotalPay" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

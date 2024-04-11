@@ -14,6 +14,8 @@
         <EntityTypeShape EntityType="SuperMartketsModel.Account" Width="1.5" PointX="3.375" PointY="4.75" />
         <EntityTypeShape EntityType="SuperMartketsModel.Order" Width="1.5" PointX="7.5" PointY="0.75" />
         <AssociationConnector Association="SuperMartketsModel.FK_Order_Customers1" />
+        <EntityTypeShape EntityType="SuperMartketsModel.DonHang" Width="1.5" PointX="7.5" PointY="5" />
+        <AssociationConnector Association="SuperMartketsModel.FK_DonHang_Customers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

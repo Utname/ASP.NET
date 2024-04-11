@@ -33,6 +33,7 @@ namespace Data.Entity
         public virtual DbSet<TypeAddress> TypeAddresses { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<DonHang> DonHangs { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -171,7 +172,25 @@ namespace Data.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllProduct_Result>("spGetAllProduct", yearBDParameter, pageParameter, sizeParameter);
         }
+    
+      
+        public virtual ObjectResult<spGetAllDonHangNew_Result> spGetAllDonHangNew(Nullable<int> idCustomer, Nullable<System.DateTime> orderDate, Nullable<int> price)
+        {
+            var idCustomerParameter = idCustomer.HasValue ?
+                new ObjectParameter("idCustomer", idCustomer) :
+                new ObjectParameter("idCustomer", typeof(int));
+    
+            var orderDateParameter = orderDate.HasValue ?
+                new ObjectParameter("OrderDate", orderDate) :
+                new ObjectParameter("OrderDate", typeof(System.DateTime));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllDonHangNew_Result>("spGetAllDonHangNew", idCustomerParameter, orderDateParameter, priceParameter);
+        }
 
-        public System.Data.Entity.DbSet<Data.Entity.spGetAllProduct_Result> spGetAllProduct_Result { get; set; }
+        public System.Data.Entity.DbSet<Data.Entity.spGetAllDonHangNew_Result> spGetAllDonHangNew_Result { get; set; }
     }
 }

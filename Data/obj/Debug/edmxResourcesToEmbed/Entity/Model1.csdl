@@ -25,6 +25,7 @@
     <NavigationProperty Name="Address" Relationship="Self.FK_Customers_Address" FromRole="Customers" ToRole="Address" />
     <NavigationProperty Name="Orders" Relationship="SuperMartketsModel.FK_Order_Customers1" FromRole="Customer" ToRole="Order" />
     <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DonHangs" Relationship="SuperMartketsModel.FK_DonHang_Customers" FromRole="Customer" ToRole="DonHang" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -128,6 +129,29 @@
       <Parameter Name="page" Mode="In" Type="Int32" />
       <Parameter Name="size" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="DonHangs" EntityType="SuperMartketsModel.DonHang" />
+    <AssociationSet Name="FK_DonHang_Customers" Association="SuperMartketsModel.FK_DonHang_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="DonHang" EntitySet="DonHangs" />
+    </AssociationSet>
+    <FunctionImport Name="spGetAllDonHang" ReturnType="Collection(SuperMartketsModel.spGetAllDonHang_Result1)">
+      <Parameter Name="idCustomer" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllDonHangs" ReturnType="Collection(SuperMartketsModel.spGetAllDonHangs_Result)">
+      <Parameter Name="idCustomer" Mode="In" Type="Int32" />
+      <Parameter Name="Price" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllDonHang1" ReturnType="Collection(SuperMartketsModel.spGetAllDonHang1_Result1)">
+      <Parameter Name="idCustomer" Mode="In" Type="Int32" />
+      <Parameter Name="OrderDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Price" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetAllDonHangNew" ReturnType="Collection(SuperMartketsModel.spGetAllDonHangNew_Result)">
+      <Parameter Name="idCustomer" Mode="In" Type="Int32" />
+      <Parameter Name="OrderDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Price" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -196,5 +220,128 @@
     <Property Type="String" Name="Status_del" Nullable="false" MaxLength="10" />
     <Property Type="Double" Name="Money" Nullable="true" />
     <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCustomer" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="InfoProduct" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TotalProductCost" Type="Double" />
+    <Property Name="Discount" Type="Double" />
+    <Property Name="FeeShip" Type="Double" />
+    <Property Name="TotalPay" Type="Double" />
+    <Property Name="Paid" Type="Double" />
+    <NavigationProperty Name="Customer" Relationship="SuperMartketsModel.FK_DonHang_Customers" FromRole="DonHang" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_DonHang_Customers">
+    <End Type="SuperMartketsModel.Customer" Role="Customer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="SuperMartketsModel.DonHang" Role="DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="idCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spGetAllDonHang_Result">
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="InfoProduct" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="TotalProductCost" Nullable="true" />
+    <Property Type="Double" Name="Discount" Nullable="true" />
+    <Property Type="Double" Name="FeeShip" Nullable="true" />
+    <Property Type="Double" Name="TotalPay" Nullable="true" />
+    <Property Type="Double" Name="Paid" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllDonHang1_Result">
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="InfoProduct" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="TotalProductCost" Nullable="true" />
+    <Property Type="Double" Name="Discount" Nullable="true" />
+    <Property Type="Double" Name="FeeShip" Nullable="true" />
+    <Property Type="Double" Name="TotalPay" Nullable="true" />
+    <Property Type="Double" Name="Paid" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllDonHang2_Result">
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="InfoProduct" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="TotalProductCost" Nullable="true" />
+    <Property Type="Double" Name="Discount" Nullable="true" />
+    <Property Type="Double" Name="FeeShip" Nullable="true" />
+    <Property Type="Double" Name="TotalPay" Nullable="true" />
+    <Property Type="Double" Name="Paid" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllDonHang_Result1">
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="InfoProduct" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="TotalProductCost" Nullable="true" />
+    <Property Type="Double" Name="Discount" Nullable="true" />
+    <Property Type="Double" Name="FeeShip" Nullable="true" />
+    <Property Type="Double" Name="TotalPay" Nullable="true" />
+    <Property Type="Double" Name="Paid" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllDonHangs_Result">
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="InfoProduct" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="TotalProductCost" Nullable="true" />
+    <Property Type="Double" Name="Discount" Nullable="true" />
+    <Property Type="Double" Name="FeeShip" Nullable="true" />
+    <Property Type="Double" Name="TotalPay" Nullable="true" />
+    <Property Type="Double" Name="Paid" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllDonHang1_Result1">
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="InfoProduct" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="TotalProductCost" Nullable="true" />
+    <Property Type="Double" Name="Discount" Nullable="true" />
+    <Property Type="Double" Name="FeeShip" Nullable="true" />
+    <Property Type="Double" Name="TotalPay" Nullable="true" />
+    <Property Type="Double" Name="Paid" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetAllDonHangNew_Result">
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="InfoProduct" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="TotalProductCost" Nullable="true" />
+    <Property Type="Double" Name="Discount" Nullable="true" />
+    <Property Type="Double" Name="FeeShip" Nullable="true" />
+    <Property Type="Double" Name="TotalPay" Nullable="true" />
+    <Property Type="Double" Name="Paid" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
   </ComplexType>
 </Schema>
