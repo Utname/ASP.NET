@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Data.Entity.spGetAllTinTuc_Result>
+
+@{
+    ViewBag.Title = "getAllList";
+    Layout = "~/Areas/Admin/Views/Shared/Layout-admin.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            List all TinTuc
+            <a href="~/Admin/TinTuc/Insert" style="float:right">Create</a>
+        </h6>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bTinTuced" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.C_No)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TieuDe)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TomTat)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NoiDung)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ThoiGianViet)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TacGia)
+                        </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.TrangThai)
+                        </th>*@
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.C_No)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TieuDe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TomTat)
+                            </td>
+                            <td>
+                                @Html.Raw(item.NoiDung)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ThoiGianViet)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TacGia)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.TrangThai)
+                            </td>*@
+                            @*<td>
+                                    @Html.ActionLink("Edit", "Edit", item) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>*@
+                            <td>
+                                <a href="~/Admin/TinTuc/Edit?id=@item.Id">Update</a>
+                                <a href="~/Admin/TinTuc/Delete?id=@item.Id" style="color:red">Delete</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

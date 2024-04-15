@@ -152,6 +152,13 @@
       <Parameter Name="OrderDate" Mode="In" Type="DateTime" />
       <Parameter Name="Price" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="TinTucs" EntityType="SuperMartketsModel.TinTuc" />
+    <FunctionImport Name="spGetAllTinTuc" ReturnType="Collection(SuperMartketsModel.spGetAllTinTuc_Result)">
+      <Parameter Name="TieuDe" Mode="In" Type="String" />
+      <Parameter Name="ThoiGianViet" Mode="In" Type="DateTime" />
+      <Parameter Name="page" Mode="In" Type="Int32" />
+      <Parameter Name="size" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -343,5 +350,28 @@
     <Property Type="Double" Name="TotalPay" Nullable="true" />
     <Property Type="Double" Name="Paid" Nullable="true" />
     <Property Type="Int32" Name="Id" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TomTat" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThoiGianViet" Type="DateTime" Precision="0" />
+    <Property Name="TacGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LinkSeo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Int32" />
+  </EntityType>
+  <ComplexType Name="spGetAllTinTuc_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int64" Name="C_No" Nullable="true" />
+    <Property Type="String" Name="TieuDe" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="TomTat" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="NoiDung" Nullable="true" />
+    <Property Type="DateTime" Name="ThoiGianViet" Nullable="true" />
+    <Property Type="String" Name="TacGia" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

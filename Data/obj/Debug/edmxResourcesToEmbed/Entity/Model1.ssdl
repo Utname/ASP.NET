@@ -74,6 +74,20 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="500" />
+    <Property Name="TomTat" Type="nvarchar" MaxLength="500" />
+    <Property Name="HinhAnh" Type="nvarchar" MaxLength="500" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="ThoiGianViet" Type="date" />
+    <Property Name="TacGia" Type="nvarchar" MaxLength="50" />
+    <Property Name="LinkSeo" Type="nvarchar" MaxLength="500" />
+    <Property Name="TrangThai" Type="int" />
+  </EntityType>
   <EntityType Name="TypeAddress">
     <Key>
       <PropertyRef Name="Id" />
@@ -174,6 +188,12 @@
     <Parameter Name="page" Type="int" Mode="In" />
     <Parameter Name="size" Type="int" Mode="In" />
   </Function>
+  <Function Name="spGetAllTinTuc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TieuDe" Type="nvarchar" Mode="In" />
+    <Parameter Name="ThoiGianViet" Type="date" Mode="In" />
+    <Parameter Name="page" Type="int" Mode="In" />
+    <Parameter Name="size" Type="int" Mode="In" />
+  </Function>
   <Function Name="spSearchAddress" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
   </Function>
@@ -187,6 +207,7 @@
     <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TypeAddress" EntityType="Self.TypeAddress" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Address_TypeAddress" Association="Self.FK_Address_TypeAddress">
       <End Role="TypeAddress" EntitySet="TypeAddress" />

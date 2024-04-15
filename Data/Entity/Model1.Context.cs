@@ -34,6 +34,7 @@ namespace Data.Entity
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<DonHang> DonHangs { get; set; }
+        public virtual DbSet<TinTuc> TinTucs { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -173,7 +174,49 @@ namespace Data.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllProduct_Result>("spGetAllProduct", yearBDParameter, pageParameter, sizeParameter);
         }
     
-      
+        public virtual ObjectResult<spGetAllDonHang_Result1> spGetAllDonHang(Nullable<int> idCustomer, Nullable<int> price)
+        {
+            var idCustomerParameter = idCustomer.HasValue ?
+                new ObjectParameter("idCustomer", idCustomer) :
+                new ObjectParameter("idCustomer", typeof(int));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllDonHang_Result1>("spGetAllDonHang", idCustomerParameter, priceParameter);
+        }
+    
+        public virtual ObjectResult<spGetAllDonHangs_Result> spGetAllDonHangs(Nullable<int> idCustomer, Nullable<int> price)
+        {
+            var idCustomerParameter = idCustomer.HasValue ?
+                new ObjectParameter("idCustomer", idCustomer) :
+                new ObjectParameter("idCustomer", typeof(int));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllDonHangs_Result>("spGetAllDonHangs", idCustomerParameter, priceParameter);
+        }
+    
+        public virtual ObjectResult<spGetAllDonHang1_Result1> spGetAllDonHang1(Nullable<int> idCustomer, Nullable<System.DateTime> orderDate, Nullable<int> price)
+        {
+            var idCustomerParameter = idCustomer.HasValue ?
+                new ObjectParameter("idCustomer", idCustomer) :
+                new ObjectParameter("idCustomer", typeof(int));
+    
+            var orderDateParameter = orderDate.HasValue ?
+                new ObjectParameter("OrderDate", orderDate) :
+                new ObjectParameter("OrderDate", typeof(System.DateTime));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("Price", price) :
+                new ObjectParameter("Price", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllDonHang1_Result1>("spGetAllDonHang1", idCustomerParameter, orderDateParameter, priceParameter);
+        }
+    
         public virtual ObjectResult<spGetAllDonHangNew_Result> spGetAllDonHangNew(Nullable<int> idCustomer, Nullable<System.DateTime> orderDate, Nullable<int> price)
         {
             var idCustomerParameter = idCustomer.HasValue ?
@@ -190,7 +233,26 @@ namespace Data.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllDonHangNew_Result>("spGetAllDonHangNew", idCustomerParameter, orderDateParameter, priceParameter);
         }
-
-        public System.Data.Entity.DbSet<Data.Entity.spGetAllDonHangNew_Result> spGetAllDonHangNew_Result { get; set; }
+    
+        public virtual ObjectResult<spGetAllTinTuc_Result> spGetAllTinTuc(string tieuDe, Nullable<System.DateTime> thoiGianViet, Nullable<int> page, Nullable<int> size)
+        {
+            var tieuDeParameter = tieuDe != null ?
+                new ObjectParameter("TieuDe", tieuDe) :
+                new ObjectParameter("TieuDe", typeof(string));
+    
+            var thoiGianVietParameter = thoiGianViet.HasValue ?
+                new ObjectParameter("ThoiGianViet", thoiGianViet) :
+                new ObjectParameter("ThoiGianViet", typeof(System.DateTime));
+    
+            var pageParameter = page.HasValue ?
+                new ObjectParameter("page", page) :
+                new ObjectParameter("page", typeof(int));
+    
+            var sizeParameter = size.HasValue ?
+                new ObjectParameter("size", size) :
+                new ObjectParameter("size", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetAllTinTuc_Result>("spGetAllTinTuc", tieuDeParameter, thoiGianVietParameter, pageParameter, sizeParameter);
+        }
     }
 }
