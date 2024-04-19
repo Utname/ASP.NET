@@ -6,20 +6,22 @@ using System.Web.Mvc;
 using Data;
 using Data.Entity;
 using System.IO;
+using ARB_ASPNET.App_Start;
 
 namespace ARB_ASPNET.Areas.Admin.Controllers
 {
     public class CustomersController : Controller
     {
         // GET: Admin/Customers
+        [RoleUser]
         public ActionResult getAllList()
         {
             var map = new mapCustomers();
-            return View(map.loadPageByStore(null,1,20));
+            return View(map.loadPageByStore(null, 1, 20));
         }
         public ActionResult Insert()
         {
-            return View(new Customer() { Birthday = DateTime.Now, Money = 0});
+            return View(new Customer() { Birthday = DateTime.Now, Money = 0 });
         }
 
         [HttpPost]
@@ -46,11 +48,11 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
         public ActionResult Edit(Customer model, HttpPostedFileBase fileUpload)
         {
             //1.Kiểm tra tồn tại: người dùng có đưa file lên không (null,length)
-            if(fileUpload != null)
+            if (fileUpload != null)
             {
                 List<string> exts = new List<string>() { ".jpeg", ".png", ".gif" };
                 string ten = Path.GetFileNameWithoutExtension(fileUpload.FileName);
-                string  ext = Path.GetExtension(fileUpload.FileName);
+                string ext = Path.GetExtension(fileUpload.FileName);
                 if (fileUpload.ContentLength > 0 & exts.Count(m => m == ext.ToLower()) > 0)
                 {
                     //Lưu
@@ -58,7 +60,7 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
                     string folderThoiGian = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day;
                     //1.Xác định thư mục lưu
                     string folder = "/File/" + folderThoiGian + "/";
-                    if(System.IO.File.Exists(Server.MapPath(folder)) == false)
+                    if (System.IO.File.Exists(Server.MapPath(folder)) == false)
                     {
                         System.IO.Directory.CreateDirectory(Server.MapPath(folder));
                     }
@@ -80,7 +82,7 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
                     while (System.IO.File.Exists(ddTuyetDoi) == true)
                     {
                         i++;
-                        
+
                         tenFile = ten + "_" + i + ext;
                         ddTuyetDoi = Server.MapPath(folder + tenFile);
                     }

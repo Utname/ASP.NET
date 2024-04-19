@@ -32,9 +32,12 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-12">Avatar</label>
+            <label class="control-label col-md-12">
+                HinhAnh
+                <button type="button" onclick="OpenCkfinder()">Chọn ảnh</button>
+            </label>
             <div class="col-md-12">
-                <input type="file" name="fileUpload" />
+                <input name="HinhAnh" />
             </div>
         </div>
 
@@ -93,6 +96,17 @@
 
     <script>
         CKEDITOR.replace("NoiDung");
+
+
+        function OpenCkfinder() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = SetUrlHinhAnh;
+            finder.popup();
+        }
+
+        function SetUrlHinhAnh(fileUrl) {
+            $('input[name=HinhAnh]').val(fileUrl);
+        }
     </script>
 
 }

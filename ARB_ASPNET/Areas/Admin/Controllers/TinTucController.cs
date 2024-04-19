@@ -155,5 +155,12 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
                 return View("getAllList");
             }
         }
+
+
+        public ActionResult Details(int id)
+        {
+            return View(map.Details(id));
+        }
+
     }
 }
