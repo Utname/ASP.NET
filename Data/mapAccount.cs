@@ -18,6 +18,11 @@ namespace Data
             if (user.Count() > 0) return user[0];
             else return null;
         }
+        public Account Search(int id)
+        {
+            var user = db.Accounts.Find(id);
+            return user;
+        }
 
         //Get all list account
         public List<Account> getListAll()

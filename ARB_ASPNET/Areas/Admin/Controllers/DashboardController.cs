@@ -16,5 +16,10 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
         {
             return View(new mapAccount().getListAll());
         }
+
+        public ActionResult LoiPhanQuyen()
+        {
+            return View();
+        }
     }
 }

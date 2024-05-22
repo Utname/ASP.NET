@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Data.Entity.spGetAllProduct_Result>
+﻿@model IEnumerable<Data.Entity.Customer>
 
 @{
     ViewBag.Title = "getAllList";
@@ -17,13 +17,18 @@
 
     </div>
     <div class="card-body">
+        <div class="col-12">
+            <label>Tìm kiếm</label>
+            <input type="text" name="ten" id="inpTen" />
+            <input type="text" name="sdt" id="inpSDT" />
+            <input type="number" name="namSinh" id="inpNamSinh" />
+            <button onclick="TimKiem()">Tìm</button>
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.C_No)
-                        </th>
+
                         <th>
                             @Html.DisplayNameFor(model => model.Name)
                         </th>
@@ -36,56 +41,98 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Year)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Status_del)
-                        </th>
+
                         <th>
                             @Html.DisplayNameFor(model => model.Money)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Province)
-                        </th>
+
                         <th></th>
                     </tr>
                 </thead>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.C_No)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Birthday)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Phone)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Year)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status_del)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Money)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Province)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        </td>
-                    </tr>
-                }
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td class="tenKH">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Birthday)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Year)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Money)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
 
             </table>
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        function TimKiem() {
+            var inpTen = $("#inpTen").val();
+            var inpSDT = $("#inpSDT").val();
+            var inpNamSinh = $("#inpNamSinh").val();
+
+            var jsonData = {
+                ten: inpTen,
+                sdt: inpSDT,
+                namSinh: inpNamSinh
+            }
+            $.ajax({
+                url: "/Admin/Customers/getAllListJson",
+                type: "GET",
+                dataType: "json",
+                data: jsonData,
+                success: function (data) {
+                    $("tbody").empty();
+                    $.each(data, function (index, item) {   
+                        var tr = `  <tr>
+
+                            <td class="tenKH">
+                                            `+ item.Id + `
+                                        </td>
+                                        <td>
+                                            `+ item.Id + `
+                                        </td>
+                                        <td>
+                                            `+ item.Id + `
+                                        </td>
+                                        <td>
+                                            `+ item.Id + `
+                                        </td>
+
+                                        <td>
+                                            `+ item.Id + `
+                                        </td>
+                                        <td>
+                                            `+ item.Id + `
+                                        </td>
+                        </tr>`;
+                        $("tbody").append(tr);
+                    });
+                }
+            })
+        }
+    </script>
+}
 
 

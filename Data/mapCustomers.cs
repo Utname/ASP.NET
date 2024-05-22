@@ -11,6 +11,28 @@ namespace Data
         SuperMartketsEntities db = new SuperMartketsEntities();
         public string message = "";
 
+
+        public List<Customer> TimKiem(string ten, string sdt, int namSinh)
+        {
+            try
+            {
+                var data = (from kh in db.Customers
+                            where
+                     (kh.Name.ToLower().Contains(ten.ToLower()) == true || string.IsNullOrEmpty(ten) == true)
+                     && (kh.Phone.ToLower().Contains(sdt.ToLower()) == true || string.IsNullOrEmpty(sdt) == true)
+                     && (kh.Birthday.Value.Year == namSinh || namSinh == 0)
+                            select kh
+                      ).ToList();
+                return data;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
+        }
+
         public List<Customer> getAllCustomer()
         {
             return db.Customers.ToList();

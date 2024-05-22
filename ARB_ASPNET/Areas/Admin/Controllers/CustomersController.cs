@@ -7,17 +7,43 @@ using Data;
 using Data.Entity;
 using System.IO;
 using ARB_ASPNET.App_Start;
+using Newtonsoft.Json;
 
 namespace ARB_ASPNET.Areas.Admin.Controllers
 {
     public class CustomersController : Controller
     {
         // GET: Admin/Customers
-        [RoleUser]
-        public ActionResult getAllList()
+       // [RoleUser(MaChucNang = "KH_XemDanhSach")]
+        public ActionResult getAllList(string ten,string sdt,int? namSinh)
         {
             var map = new mapCustomers();
-            return View(map.loadPageByStore(null, 1, 20));
+            return View(map.TimKiem(ten, sdt, namSinh??0));
+        }
+
+        [HttpGet]
+        public JsonResult getAllListJson(string ten, string sdt, int? namSinh)
+        {
+            var map = new mapCustomers();
+            var data = map.TimKiem(ten, sdt, namSinh ?? 0);
+            string jsonStr = JsonConvert.SerializeObject(data.Select(m => new
+            {
+                m.Active,
+                m.Avatar,
+                m.idAddress,
+                m.Year,
+                m.Birthday,
+                m.Id,
+            }).ToList());
+            return Json(data.Select(m => new
+            {
+                m.Active,
+                m.Avatar,
+                m.idAddress,
+                m.Year,
+                m.Birthday,
+                m.Id,
+            }).ToList(), JsonRequestBehavior.AllowGet);
         }
         public ActionResult Insert()
         {

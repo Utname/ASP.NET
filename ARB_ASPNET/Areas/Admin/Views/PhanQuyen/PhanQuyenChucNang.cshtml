@@ -1,0 +1,106 @@
+﻿@model Data.Entity.Account
+
+@{
+    ViewBag.Title = "PhanQuyenChucNang";
+    Layout = "~/Areas/Admin/Views/Shared/Layout-admin.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            Phan_Quyen @Model.Username
+            <a href="~/Admin/PhanQuyen/Insert" style="float:right">Back</a>
+        </h6>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="table-responsive">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Username)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Username)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Password)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Phone)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Avatar)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Avatar)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+            <div class="col-md-9">
+                Phân quyền
+                @{
+                    var listChucNag = new Data.mapPhanQuyen().DanhSachChucNang();
+                    var listNhom = listChucNag.Select(m => m.Nhom).Distinct().ToList();
+                }
+
+                <table class="table">
+                    @foreach (var nhom in listNhom)
+                    {
+                        <tr>
+                            <th>@nhom</th>
+                            <th>
+                                Chọn tất cả | hủy tất cả
+                            </th>
+
+                        </tr>
+                        foreach (var cn in listChucNag.Where(m=>m.Nhom == nhom).ToList())
+                        {
+                            var check = new Data.mapPhanQuyen().KiemTra(Model.Id, cn.MaChucNang);
+                            <tr>
+                                <td>
+                                    @cn.TenChucNang
+                                </td>
+                                <td>
+                                    @if (check == true)
+                                    {
+                                        <input type="checkbox" checked>
+                                        <a href="~/Admin/PhanQuyen/LuuPhanQuyen?idTaiKhoan=@Model.Id&chucNang=@cn.MaChucNang">Hủy</a>
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox">
+                                        <a href="~/Admin/PhanQuyen/LuuPhanQuyen?idTaiKhoan=@Model.Id&chucNang=@cn.MaChucNang">Đăng ký</a>
+
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+
+
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

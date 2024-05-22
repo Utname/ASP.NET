@@ -79,3 +79,5 @@ C:\ASP.NET\ARB_ASPNET\obj\Debug\ARB_ASPNET.csproj.CoreCompileInputs.cache
 C:\ASP.NET\ARB_ASPNET\obj\Debug\ARB_ASPNET.csproj.CopyComplete
 C:\ASP.NET\ARB_ASPNET\obj\Debug\ARB_ASPNET.dll
 C:\ASP.NET\ARB_ASPNET\obj\Debug\ARB_ASPNET.pdb
+C:\ASP.NET\ARB_ASPNET\bin\Newtonsoft.Json.dll
+C:\ASP.NET\ARB_ASPNET\bin\Newtonsoft.Json.xml

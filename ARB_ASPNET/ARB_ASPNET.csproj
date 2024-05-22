@@ -55,6 +55,9 @@
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -2811,6 +2814,7 @@
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\jquery.nav.js" />
     <Content Include="Content\js\jquery.scrollUp.min.js" />
+    <Content Include="Content\js\jquery3.7.1.min.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\map-active.js" />
     <Content Include="Content\js\niceselect.js" />
@@ -2834,6 +2838,7 @@
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DonHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PhanQuyenController.cs" />
     <Compile Include="Areas\Admin\Controllers\TinTucController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
@@ -3063,6 +3068,9 @@
     <Content Include="Areas\Admin\Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Areas\Admin\Content\ckfinder\userfiles\.htaccess" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\LoiPhanQuyen.cshtml" />
+    <Content Include="Areas\Admin\Views\PhanQuyen\DanhSachTaiKhoan.cshtml" />
+    <Content Include="Areas\Admin\Views\PhanQuyen\PhanQuyenChucNang.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

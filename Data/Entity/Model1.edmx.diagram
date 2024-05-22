@@ -17,6 +17,10 @@
         <EntityTypeShape EntityType="SuperMartketsModel.DonHang" Width="1.5" PointX="7.5" PointY="5" />
         <AssociationConnector Association="SuperMartketsModel.FK_DonHang_Customers" />
         <EntityTypeShape EntityType="SuperMartketsModel.TinTuc" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="SuperMartketsModel.ChucNang" Width="1.5" PointX="3.375" PointY="10" />
+        <EntityTypeShape EntityType="SuperMartketsModel.PhanQuyen" Width="1.5" PointX="5.625" PointY="9.875" />
+        <AssociationConnector Association="SuperMartketsModel.FK_PhanQuyen_Account" />
+        <AssociationConnector Association="SuperMartketsModel.FK_PhanQuyen_ChucNang" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

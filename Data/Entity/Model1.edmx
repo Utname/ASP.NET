@@ -23,6 +23,14 @@
           <Property Name="Province" Type="nvarchar" MaxLength="50" />
           <Property Name="idNameType" Type="int" />
         </EntityType>
+        <EntityType Name="ChucNang">
+          <Key>
+            <PropertyRef Name="MaChucNang" />
+          </Key>
+          <Property Name="MaChucNang" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TenChucNang" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nhom" Type="varchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="Id" />
@@ -68,6 +76,15 @@
           <Property Name="FeeShip" Type="float" />
           <Property Name="TotalPay" Type="float" />
           <Property Name="Paid" Type="float" />
+        </EntityType>
+        <EntityType Name="PhanQuyen">
+          <Key>
+            <PropertyRef Name="idTaiKhoan" />
+            <PropertyRef Name="MaChucNang" />
+          </Key>
+          <Property Name="idTaiKhoan" Type="int" Nullable="false" />
+          <Property Name="MaChucNang" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -152,6 +169,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PhanQuyen_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhanQuyen">
+              <PropertyRef Name="idTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhanQuyen_ChucNang">
+          <End Role="ChucNang" Type="Self.ChucNang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PhanQuyen" Type="Self.PhanQuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChucNang">
+              <PropertyRef Name="MaChucNang" />
+            </Principal>
+            <Dependent Role="PhanQuyen">
+              <PropertyRef Name="MaChucNang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -208,9 +253,11 @@
         <EntityContainer Name="SuperMartketsModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChucNang" EntityType="Self.ChucNang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhanQuyen" EntityType="Self.PhanQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeAddress" EntityType="Self.TypeAddress" Schema="dbo" store:Type="Tables" />
@@ -229,6 +276,14 @@
           <AssociationSet Name="FK_Order_Customers1" Association="Self.FK_Order_Customers1">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhanQuyen_Account" Association="Self.FK_PhanQuyen_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="PhanQuyen" EntitySet="PhanQuyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="Self.FK_PhanQuyen_ChucNang">
+            <End Role="ChucNang" EntitySet="ChucNang" />
+            <End Role="PhanQuyen" EntitySet="PhanQuyen" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -394,6 +449,16 @@
             <Parameter Name="page" Mode="In" Type="Int32" />
             <Parameter Name="size" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="ChucNangs" EntityType="SuperMartketsModel.ChucNang" />
+          <EntitySet Name="PhanQuyens" EntityType="SuperMartketsModel.PhanQuyen" />
+          <AssociationSet Name="FK_PhanQuyen_Account" Association="SuperMartketsModel.FK_PhanQuyen_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="PhanQuyen" EntitySet="PhanQuyens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhanQuyen_ChucNang" Association="SuperMartketsModel.FK_PhanQuyen_ChucNang">
+            <End Role="ChucNang" EntitySet="ChucNangs" />
+            <End Role="PhanQuyen" EntitySet="PhanQuyens" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -420,6 +485,7 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhanQuyens" Relationship="SuperMartketsModel.FK_PhanQuyen_Account" FromRole="Account" ToRole="PhanQuyen" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -609,6 +675,54 @@
           <Property Type="DateTime" Name="ThoiGianViet" Nullable="true" />
           <Property Type="String" Name="TacGia" Nullable="true" MaxLength="50" />
           </ComplexType>
+        <EntityType Name="ChucNang">
+          <Key>
+            <PropertyRef Name="MaChucNang" />
+          </Key>
+          <Property Name="MaChucNang" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TenChucNang" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nhom" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PhanQuyens" Relationship="SuperMartketsModel.FK_PhanQuyen_ChucNang" FromRole="ChucNang" ToRole="PhanQuyen" />
+        </EntityType>
+        <EntityType Name="PhanQuyen">
+          <Key>
+            <PropertyRef Name="idTaiKhoan" />
+            <PropertyRef Name="MaChucNang" />
+          </Key>
+          <Property Name="idTaiKhoan" Type="Int32" Nullable="false" />
+          <Property Name="MaChucNang" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account" Relationship="SuperMartketsModel.FK_PhanQuyen_Account" FromRole="PhanQuyen" ToRole="Account" />
+          <NavigationProperty Name="ChucNang" Relationship="SuperMartketsModel.FK_PhanQuyen_ChucNang" FromRole="PhanQuyen" ToRole="ChucNang" />
+        </EntityType>
+        <Association Name="FK_PhanQuyen_Account">
+          <End Type="SuperMartketsModel.Account" Role="Account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SuperMartketsModel.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhanQuyen">
+              <PropertyRef Name="idTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhanQuyen_ChucNang">
+          <End Type="SuperMartketsModel.ChucNang" Role="ChucNang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SuperMartketsModel.PhanQuyen" Role="PhanQuyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChucNang">
+              <PropertyRef Name="MaChucNang" />
+            </Principal>
+            <Dependent Role="PhanQuyen">
+              <PropertyRef Name="MaChucNang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -798,6 +912,24 @@
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="ChucNangs">
+            <EntityTypeMapping TypeName="SuperMartketsModel.ChucNang">
+              <MappingFragment StoreEntitySet="ChucNang">
+                <ScalarProperty Name="Nhom" ColumnName="Nhom" />
+                <ScalarProperty Name="TenChucNang" ColumnName="TenChucNang" />
+                <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhanQuyens">
+            <EntityTypeMapping TypeName="SuperMartketsModel.PhanQuyen">
+              <MappingFragment StoreEntitySet="PhanQuyen">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="MaChucNang" ColumnName="MaChucNang" />
+                <ScalarProperty Name="idTaiKhoan" ColumnName="idTaiKhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

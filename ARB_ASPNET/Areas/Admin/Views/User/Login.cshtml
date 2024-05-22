@@ -46,20 +46,20 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" method="post">
+                                    <form class="user" method="post" id="frmLogin">
                                         <div class="form-group">
-                                            <input name="name" class="form-control form-control-user"
+                                            <input name="name" class="form-control form-control-user" id="txtName"
                                                   >
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user" id="txtPass"
                                                    >
                                         </div>
                                         <p>
                                             @ViewBag.error
                                         </p>
                                       
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="button" id="btnLogin" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
                                     </form>
@@ -91,6 +91,34 @@
 
     <!-- Custom scripts for all pages-->
     <script src="~/Areas/Admin/Content/img/sb-admin-2.min.js"></script>
+    <script>
+        $("#btnLogin").click(function () {
+            var check = true;
+            var name = $("#txtName").val();
+            if (name == "") {
+                $("#txtName").css("border", "2px solid red");
+                $("#txtName").focus();
+                check = false;
+            }
+            else {
+                $("#txtName").css("border", "unset");
+            }
+
+            var pass = $("#txtPass").val();
+            if (pass == "") {
+                $("#txtPass").css("border", "2px solid red");
+                $("#txtPass").focus();
+                check = false;
+            }
+            else {
+                $("#txtPass").css("border", "unset");
+            }
+
+            if (check === true) {
+                $("#frmLogin").submit();
+            }
+        });
+    </script>
 
 </body>
 

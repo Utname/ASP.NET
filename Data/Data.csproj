@@ -56,6 +56,9 @@
     <Compile Include="Entity\Address.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\ChucNang.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -78,6 +81,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entity\Order.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PhanQuyen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\spGetAllDonHang1_Result.cs">
@@ -130,6 +136,7 @@
     <Compile Include="mapCustomers.cs" />
     <Compile Include="mapDonHang.cs" />
     <Compile Include="mapOrder.cs" />
+    <Compile Include="mapPhanQuyen.cs" />
     <Compile Include="mapTinTuc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

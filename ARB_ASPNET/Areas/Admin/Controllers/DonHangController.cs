@@ -15,5 +15,7 @@ namespace ARB_ASPNET.Areas.Admin.Controllers
             var map = new mapDonHang();
             return View(map.loadPageByStore(3,null,-1));
         }
+
+       
     }
 }

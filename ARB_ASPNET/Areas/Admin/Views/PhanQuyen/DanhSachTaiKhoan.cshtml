@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Data.Entity.Account>
+
+@{
+    ViewBag.Title = "DanhSachTaiKhoan";
+    Layout = "~/Areas/Admin/Views/Shared/Layout-admin.cshtml";
+}
+
+@{
+    int i = 0;
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            List all Phan_Quyen
+            <a href="~/Admin/PhanQuyen/DanhSachTaiKhoan" style="float:right">Create</a>
+        </h6>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bPhan_Quyened" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="background:blue;color:white">
+                        <th>_No</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Username)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Avatar)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(++i)</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Avatar)
+                            </td>
+
+                            @*<td>
+            @Html.ActionLink("Edit", "Edit", item) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>*@
+                        <td>
+                            <a href="~/Admin/PhanQuyen/PhanQuyenChucNang?idTaiKhoan=@item.Id">Phân Quyền</a>
+                            <a href="~/Admin/Phan_Quyen/Update?id=@item.Id">Update</a>
+                            <a href="~/Admin/Phan_Quyen/Delete?id=@item.Id" style="color:red">Delete</a>
+
+                        </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
